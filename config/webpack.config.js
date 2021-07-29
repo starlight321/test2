@@ -16,9 +16,42 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.(jpe?g|png|gif)$/i, // 图片
+        use: [
+          {
+            loader: "url-loader",
+            options: {
+              limit: 20480, // 20kb
+              fallback: {
+                loader: "file-loader",
+                options: {
+                  name: "img/[name].[hash:8].[ext]",
+                },
+              },
+            },
+          },
+        ],
+      },
+      {
+        test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/, // 媒体文件
+        use: [
+          {
+            loader: "url-loader",
+            options: {
+              limit: 10240, // 10kb
+              fallback: {
+                loader: "file-loader",
+                options: {
+                  name: "media/[name].[hash:8].[ext]",
+                },
+              },
+            },
+          },
+        ],
+      },
+      {
         test: /\.css$/,
         use: [
-          "style-loader",
           MiniCssExtractPlugin.loader,
           {
             loader: "css-loader",
@@ -41,7 +74,6 @@ module.exports = {
       {
         test: /\.less$/,
         use: [
-          "style-loader",
           MiniCssExtractPlugin.loader,
           {
             loader: "css-loader",
