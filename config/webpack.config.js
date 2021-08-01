@@ -94,6 +94,10 @@ module.exports = {
         include: path.join(__dirname, "../assets"),
         exclude: "/node_modules/",
       },
+      {
+        test: /\.js$/,
+        use: { loader: "babel-loader" },
+      },
     ],
   },
 
