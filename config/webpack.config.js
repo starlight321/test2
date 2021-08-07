@@ -2,6 +2,7 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const Webpack = require('webpack')
 
 module.exports = {
   mode: "development",
@@ -12,6 +13,14 @@ module.exports = {
   output: {
     filename: "[name].[hash:8].js",
     path: path.resolve(__dirname, "../dist"),
+  },
+  devServer: {
+    port: 3000,
+    hot: true,
+    contentBase: "../dist",
+    compress: true,
+    hot: true,
+    open: true,
   },
   module: {
     rules: [
@@ -52,7 +61,7 @@ module.exports = {
       {
         test: /\.css$/,
         use: [
-          MiniCssExtractPlugin.loader,
+          process.env.NODE_ENV == 'development' ? { loader: 'style-loader' }: MiniCssExtractPlugin.loader,
           {
             loader: "css-loader",
             options: {
@@ -74,7 +83,7 @@ module.exports = {
       {
         test: /\.less$/,
         use: [
-          MiniCssExtractPlugin.loader,
+          process.env.NODE_ENV == 'development' ? { loader: 'style-loader' }: MiniCssExtractPlugin.loader,
           {
             loader: "css-loader",
             options: {
@@ -128,5 +137,6 @@ module.exports = {
       inject: "body",
       chunks: ["header"],
     }),
+    new Webpack.HotModuleReplacementPlugin(),
   ],
 };

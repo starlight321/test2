@@ -4,6 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
+    "dev": "webpack-dev-server --config config/webpack.config.js",
     "build": "webpack --config config/webpack.config.js"
   },
   "devDependencies": {
@@ -23,7 +24,8 @@
     "style-loader": "^3.2.1",
     "url-loader": "^4.1.1",
     "webpack": "^5.45.1",
-    "webpack-cli": "3.3.12"
+    "webpack-cli": "3.3.12",
+    "webpack-dev-server": "^3.11.2"
   },
   "dependencies": {
     "@babel/runtime-corejs3": "^7.14.9"

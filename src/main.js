@@ -14,8 +14,8 @@ const test = (text, class1, class2) => {
   p.className = class2;
   element.appendChild(p);
 
-  // const target = document.getElementById('app');
-  // target.innerHTML =`<img src=${testPic} /><br /><img src=${vkdPic} /><br /><img src=${wallPic} />`;
+  const target = document.getElementById('app');
+  target.innerHTML =`<img src=${testPic} /><br /><img src=${vkdPic} /><br /><img src=${wallPic} />`;
   document.body.appendChild(element);
 };
 
